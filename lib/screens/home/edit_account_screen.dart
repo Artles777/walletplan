@@ -1,13 +1,14 @@
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
+
 import "package:walletplan/helpers/variables/colors.dart";
 import "package:walletplan/store/base.dart";
 import "package:walletplan/store/home.dart";
-import "package:walletplan/widgets/home/adds/add_account/add_account_bar_widget.dart";
-import "package:walletplan/widgets/home/adds/add_account/add_account_form_widget.dart";
+import "package:walletplan/widgets/home/adds/edit_account/edit_account_bar_widget.dart";
+import "package:walletplan/widgets/home/adds/edit_account/edit_account_form_widget.dart";
 
-class AddAccountScreen extends StatelessWidget {
-  const AddAccountScreen({super.key});
+class EditAccountScreen extends StatelessWidget {
+  const EditAccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) => MultiProvider(
@@ -17,8 +18,8 @@ class AddAccountScreen extends StatelessWidget {
         ],
         child: const Scaffold(
           backgroundColor: PrimaryColors.primary90,
-          appBar: AddAccountBarWidget(),
-          body: AddAccountFormWidget(),
+          appBar: EditAccountBarWidget(),
+          body: EditAccountFormWidget(),
         ),
       );
 }

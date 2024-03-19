@@ -1,33 +1,36 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:walletplan/helpers/variables.dart';
-import 'package:walletplan/store/base.dart';
-import 'package:walletplan/widgets/home/bar/actions_widget.dart';
+import "package:flutter/material.dart";
+import "package:provider/provider.dart";
+import "package:walletplan/helpers/variables/colors.dart";
+import "package:walletplan/store/base.dart";
+import "package:walletplan/widgets/home/bar/actions_widget.dart";
 
-class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
-  const AppBarWidget({super.key});
+class BaseBarWidget extends StatelessWidget implements PreferredSizeWidget {
+  const BaseBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final bar = Provider.of<BaseState>(context).bar;
+    final baseState = Provider.of<BaseState>(context);
+    final barState = baseState.bar;
 
     return AppBar(
-      centerTitle: false,
+      centerTitle: true,
+      backgroundColor: PrimaryColors.primary90,
+      iconTheme: const IconThemeData(color: SecondaryColors.secondary10),
       title: TextButton(
-        onPressed: bar.showCalendar,
+        onPressed: barState.showCalendar,
         child: Text(
-          bar.dateRange,
-          style: TextStyle(fontSize: 16, color: CustomColors.darkBlue),
+          barState.dateRange,
+          style: const TextStyle(fontSize: 16, color: PrimaryColors.primary20),
         ),
       ),
       actions: [
         ActionButton(
           iconName: Icons.search,
-          handler: bar.searchHandler,
+          handler: barState.searchHandler,
         ),
         ActionButton(
-          iconName: Icons.settings,
-          handler: bar.openSettings,
+          iconName: Icons.notifications_none,
+          handler: barState.openNotifications,
         ),
       ],
     );

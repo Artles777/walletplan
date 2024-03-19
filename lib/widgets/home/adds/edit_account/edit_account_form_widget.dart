@@ -4,8 +4,8 @@ import "package:walletplan/helpers/variables/colors.dart";
 import "package:walletplan/store/base.dart";
 import "package:walletplan/store/home.dart";
 
-class AddAccountFormWidget extends StatelessWidget {
-  const AddAccountFormWidget({super.key});
+class EditAccountFormWidget extends StatelessWidget {
+  const EditAccountFormWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class AddAccountFormWidget extends StatelessWidget {
               child: const DecoratedBox(
                 decoration: BoxDecoration(color: PrimaryColors.primary99),
                 child: SafeArea(
-                  minimum: const EdgeInsets.only(
+                  minimum: EdgeInsets.only(
                     top: 20.0,
                     left: 16.0,
                     right: 16.0,

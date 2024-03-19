@@ -1,20 +1,22 @@
 import "package:flutter/material.dart";
 
-class AddButtonWidget extends StatelessWidget {
-  const AddButtonWidget({
+class ActionButtonWidget extends StatelessWidget {
+  const ActionButtonWidget({
     super.key,
     this.onPressed,
+    this.title = "Добавить",
   });
 
   final void Function()? onPressed;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed,
-      child: const Text(
-        "Добавить",
-        style: TextStyle(
+      child: Text(
+        title,
+        style: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.bold,
         ),

@@ -1,38 +1,43 @@
-import "dart:ffi";
-
 import "package:flutter/material.dart";
+import "package:sliding_up_panel/sliding_up_panel.dart";
 import "package:walletplan/helpers/variables/colors.dart";
 
-class CustomBottomSheetWidget extends StatelessWidget {
-  const CustomBottomSheetWidget({required this.childrenWidgets, super.key});
-  final List<Widget> childrenWidgets;
+class CustomDraggableSheetWidget extends StatelessWidget {
+  const CustomDraggableSheetWidget({
+    required this.childWidget,
+    this.body,
+    this.minSize = 300,
+    this.maxSize = double.infinity,
+    this.controller,
+    this.onPanelSlide,
+    super.key,
+  });
+
+  final Widget childWidget;
+  final Widget? body;
+  final double minSize;
+  final double maxSize;
+  final PanelController? controller;
+  final void Function(double position)? onPanelSlide;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: DraggableScrollableSheet(
-        builder: (BuildContext context, ScrollController scrollController) => Padding(
-          padding: const EdgeInsets.only(top: 20.0),
-          child: DecoratedBox(
-            decoration: const BoxDecoration(
-              color: PrimaryColors.primary99,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-            ),
-            child: CustomScrollView(
-              controller: scrollController,
-              slivers: [
-                SliverList(
-                  delegate: SliverChildListDelegate([
-                    Column(
-                      children: childrenWidgets,
-                    )
-                  ]),
-                )
-              ],
-            ),
-          ),
+    return SlidingUpPanel(
+      controller: controller,
+      minHeight: minSize,
+      maxHeight: maxSize,
+      color: PrimaryColors.primary99,
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+      onPanelSlide: onPanelSlide,
+      panel: Padding(
+        padding: const EdgeInsets.only(
+          top: 20.0,
+          left: 16.0,
+          right: 16.0,
         ),
+        child: childWidget,
       ),
+      body: body,
     );
   }
 }
